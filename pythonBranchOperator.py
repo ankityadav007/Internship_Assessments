@@ -28,7 +28,7 @@ get_weekday=PythonOperator(
 	dag=dag
 )
 
-fork=BranchPythonOperator(
+hello=BranchPythonOperator(
 	task_id='branching',
 	python_callable=branch,
 	provide_context=True,
@@ -38,4 +38,4 @@ fork=BranchPythonOperator(
 get_weekday.set_downstream(fork)
 
 for day in range(0,6):
-	fork.set_downstream(DummyOperator(task_id='task_id_'+days[day], dag=dag))
+	hello.set_downstream(DummyOperator(task_id='task_id_'+days[day], dag=dag))
