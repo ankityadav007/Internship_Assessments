@@ -1,0 +1,10 @@
+empDF.write.format(cfg['type'].get('conn_type')).options((url=cfg['url'].get('path'), dbtable=cfg['dbtable']).save()
+
+url:
+    path: 'jdbc:postgresql:airflow'
+dbtable:
+    name: Inventory
+type:
+    conn_type: jdbc
+
+fireDataDF=spark.read.format(cfg['type'].get('conn_type')).options(url=cfg['url'].get('path')+cfg['url'].get('databaseName')+cfg['url'].get('user')+cfg['url'].get('password'), dbtable=cfg['dbtable'].get('name')).save()
